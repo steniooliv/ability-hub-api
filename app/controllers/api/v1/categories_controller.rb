@@ -35,7 +35,9 @@ class Api::V1::CategoriesController < ApplicationController
   private 
 
   def set_nuvem_shop_service
-    @nuvem_shop_service = NuvemShop.new
+    store_id = request.headers['HTTP_STORE_ID']
+    app_token = request.headers['HTTP_APP_TOKEN']
+    @nuvem_shop_service = NuvemShop.new(store_id, app_token)
   end
 
 

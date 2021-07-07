@@ -1,8 +1,6 @@
 class Api::V1::OrdersController < ApplicationController
 
-  require 'json'
-
-  before_action :_set_nuvem_shop_service
+  before_action :set_nuvem_shop_service
 
   def index
     @index_orders = @nuvem_shop_service.index_orders
@@ -27,8 +25,10 @@ class Api::V1::OrdersController < ApplicationController
 
   private 
 
-  def _set_nuvem_shop_service
-    @nuvem_shop_service = NuvemShop.new
+  def set_nuvem_shop_service
+    store_id = request.headers['HTTP_STORE_ID']
+    app_token = request.headers['HTTP_APP_TOKEN']
+    @nuvem_shop_service = NuvemShop.new(store_id, app_token)
   end
 
 end
