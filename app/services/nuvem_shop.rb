@@ -3,12 +3,12 @@ class NuvemShop
   require 'faraday'
   require 'json'
 
-
-  def initialize
-    @store_id = "1742367"
-    @app_token = "aca9e93b886bb6a1d4a160bb7ffe9ee33a4921cf"
-    token = {"Content-Type": "application/json", "Authentication": "bearer #{@app_token}"}
-    @conn = Faraday.new(url: "https://api.nuvemshop.com.br/v1/#{@store_id}", headers: token)
+    
+  def initialize(store_id, app_token)
+    @store_id = store_id
+    @app_token = app_token
+    header = {"Content-Type": "application/json", "Authentication": "bearer #{@app_token}"}
+    @conn = Faraday.new(url: "https://api.nuvemshop.com.br/v1/#{@store_id}", headers: header)
   end
   
   
