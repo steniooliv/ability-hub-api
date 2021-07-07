@@ -21,7 +21,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     id = params[:id]
-    data = @data
+    data = request.body.read()
     @update_product = @nuvem_shop_service.update_product(id, data)
     render json: @update_product
   end

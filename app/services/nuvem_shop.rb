@@ -82,6 +82,7 @@ class NuvemShop
   end
 
   def show_order(id)
+    id = id
     response = @conn.get("orders/#{id}")
     response.body
   end
